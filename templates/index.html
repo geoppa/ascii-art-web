@@ -2,14 +2,133 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ASCII Art Web GUI</title>
-    <style>
-        body { font-family: sans-serif; color:rgb(255, 72, 0);text-align: center; margin-top: 50px; }
-        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
-    </style>
+    <title>ASCII Art Web</title>
 </head>
-<body style="background-color:powderblue;">
-    <h1>Welcome to ASCII Art Web GUI</h1>
-    <button onclick="alert('elgeorgiou | gpapadaki')">Click Me</button>
+
+<body>
+
+    <header>
+        <h1>ASCII Art Web</h1>
+
+        <p>
+            Convert your text into ASCII art using different banner styles.
+        </p>
+    </header>
+
+    <main>
+
+        <section>
+
+            <form method="POST" action="/ascii-art">
+
+                <div>
+
+                    <label for="text-input">
+                        Enter your text
+                    </label>
+
+                    <textarea
+                        id="text-input"
+                        rows="6"
+                    ></textarea>
+
+                </div>
+
+                <div>
+
+                    <label>
+                        Banner Style
+                    </label>
+
+                    <div>
+
+                        <input
+                            type="radio"
+                            id="standard"
+                            name="banner"
+                            value="standard"
+                            checked
+                        >
+
+                        <label for="standard">
+                            Standard
+                        </label>
+
+                    </div>
+
+                    <div>
+
+                        <input
+                            type="radio"
+                            id="shadow"
+                            name="banner"
+                            value="shadow"
+                        >
+
+                        <label for="shadow">
+                            Shadow
+                        </label>
+
+                    </div>
+
+                    <div>
+
+                        <input
+                            type="radio"
+                            id="thinkertoy"
+                            name="banner"
+                            value="thinkertoy"
+                        >
+
+                        <label for="thinkertoy">
+                            Thinkertoy
+                        </label>
+
+                    </div>
+
+                </div>
+
+                <div>
+
+                    <button type="submit">
+                        Generate ASCII Art
+                    </button>
+
+                </div>
+
+                <div>
+
+                    <p></p>
+
+                </div>
+
+            </form>
+
+        </section>
+
+        <section>
+
+            <h2>
+                Generated ASCII Art
+            </h2>
+
+            <div>
+
+                <pre></pre>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+
+        <p>
+            Created by gpapadaki | elgeorgiou
+        </p>
+
+    </footer>
+
 </body>
 </html>
