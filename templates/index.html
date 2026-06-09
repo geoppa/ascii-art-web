@@ -30,119 +30,140 @@
 
         <header class="hero">
 
-            <h1>ASCII Art Web</h1>
+    <div class="hero-frame">
 
-            <p>
-                Convert your text into ASCII art using different banner styles.
-            </p>
+        <div class="hero-line"></div>
 
-        </header>
+        <h1>ASCII Art Web</h1>
 
-        <main class="content-grid">
+        <div class="hero-line"></div>
+
+    </div>
+
+    <p>
+        Convert your text into ASCII art using different banner styles.
+    </p>
+
+</header>
+
+        <form method="POST" action="/ascii-art" class="content-grid">
 
             <section class="card controls-card">
 
-                <form method="POST" action="/ascii-art">
+               <div class="panel-title banner-title">
 
-                    <label>
-                        Banner Style
+    <span>
+        Banner Style
+    </span>
+
+    <div class="title-accent"></div>
+
+</div>
+                <div>
+
+                    <input
+                        type="radio"
+                        id="standard"
+                        name="banner"
+                        value="standard"
+                        {{ if or (eq .Banner "") (eq .Banner "standard") }}checked{{ end }}
+                    >
+
+                    <label for="standard">
+                        Standard
                     </label>
 
-                    <div>
+                </div>
 
-                        <input
-                            type="radio"
-                            id="standard"
-                            name="banner"
-                            value="standard"
-                            {{ if or (eq .Banner "") (eq .Banner "standard") }}checked{{ end }}
-                        >
+                <div>
 
-                        <label for="standard">
-                            Standard
-                        </label>
+                    <input
+                        type="radio"
+                        id="shadow"
+                        name="banner"
+                        value="shadow"
+                        {{ if eq .Banner "shadow" }}checked{{ end }}
+                    >
 
-                    </div>
+                    <label for="shadow">
+                        Shadow
+                    </label>
 
-                    <div>
+                </div>
 
-                        <input
-                            type="radio"
-                            id="shadow"
-                            name="banner"
-                            value="shadow"
-                            {{ if eq .Banner "shadow" }}checked{{ end }}
-                        >
+                <div>
 
-                        <label for="shadow">
-                            Shadow
-                        </label>
+                    <input
+                        type="radio"
+                        id="thinkertoy"
+                        name="banner"
+                        value="thinkertoy"
+                        {{ if eq .Banner "thinkertoy" }}checked{{ end }}
+                    >
 
-                    </div>
+                    <label for="thinkertoy">
+                        Thinkertoy
+                    </label>
 
-                    <div>
+                </div>
 
-                        <input
-                            type="radio"
-                            id="thinkertoy"
-                            name="banner"
-                            value="thinkertoy"
-                            {{ if eq .Banner "thinkertoy" }}checked{{ end }}
-                        >
+                <button class="generate-btn" type="submit">
+                    Generate ASCII Art
+                </button>
 
-                        <label for="thinkertoy">
-                            Thinkertoy
-                        </label>
+                {{ if .Error }}
 
-                    </div>
+                <div class="error-box">
 
-                    <button class="generate-btn" type="submit">
-                        Generate ASCII Art
-                    </button>
+                    <p>{{ .Error }}</p>
 
-                    {{ if .Error }}
+                </div>
 
-                    <div class="error-box">
-
-                        <p>{{ .Error }}</p>
-
-                    </div>
-
-                    {{ end }}
+                {{ end }}
 
             </section>
 
             <section class="card workspace-card">
 
-                    <div>
+                <div>
 
-                        <label for="text-input">
-                            Enter your text
-                        </label>
+                   <div class="panel-title">
 
-                        <textarea
-                            id="text-input"
-                            name="text"
-                            rows="6"
-                        >{{ .Text }}</textarea>
+    <span>
+        Enter your text
+    </span>
 
-                    </div>
+    <div class="title-accent"></div>
 
-                    <h2>
-                        Generated ASCII Art
-                    </h2>
+</div>
 
-                    <div class="ascii-output">
+                    <textarea
+                        id="text-input"
+                        name="text"
+                        rows="6"
+                    >{{ .Text }}</textarea>
 
-                        <pre>{{ .Result }}</pre>
+                </div>
 
-                    </div>
+                <div class="panel-title">
 
-                </form>
+    <span>
+        Generated ASCII Art
+    </span>
+
+    <div class="title-accent"></div>
+
+</div>
+
+                <div class="ascii-output">
+
+                    <pre>{{ .Result }}</pre>
+
+                </div>
 
             </section>
 
-        </main>
+        </form>
 
         <footer>
 
