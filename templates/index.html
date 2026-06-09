@@ -1,25 +1,101 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>ASCII Art Web</title>
+
+```
+<link rel="stylesheet" href="/static/style.css">
+```
+
 </head>
 
 <body>
 
-    <header>
+```
+<div class="container">
+
+    <header class="hero">
+
         <h1>ASCII Art Web</h1>
 
         <p>
             Convert your text into ASCII art using different banner styles.
         </p>
+
     </header>
 
-    <main>
+    <main class="content-grid">
 
-        <section>
+        <section class="card controls-card">
 
             <form method="POST" action="/ascii-art">
+
+                <label>
+                    Banner Style
+                </label>
+
+                <div>
+
+                    <input
+                        type="radio"
+                        id="standard"
+                        name="banner"
+                        value="standard"
+                        checked
+                    >
+
+                    <label for="standard">
+                        Standard
+                    </label>
+
+                </div>
+
+                <div>
+
+                    <input
+                        type="radio"
+                        id="shadow"
+                        name="banner"
+                        value="shadow"
+                    >
+
+                    <label for="shadow">
+                        Shadow
+                    </label>
+
+                </div>
+
+                <div>
+
+                    <input
+                        type="radio"
+                        id="thinkertoy"
+                        name="banner"
+                        value="thinkertoy"
+                    >
+
+                    <label for="thinkertoy">
+                        Thinkertoy
+                    </label>
+
+                </div>
+
+                <button class="generate-btn" type="submit">
+                    Generate ASCII Art
+                </button>
+
+                <div class="error-box">
+
+                    <p>{{ .Error }}</p>
+
+                </div>
+
+        </section>
+
+        <section class="card workspace-card">
 
                 <div>
 
@@ -30,94 +106,22 @@
                     <textarea
                         id="text-input"
                         name="text"
-                        rows="6"
+                        rows="8"
                     >{{ .Text }}</textarea>
 
                 </div>
 
-                <div>
+                <h2>
+                    Generated ASCII Art
+                </h2>
 
-                    <label>
-                        Banner Style
-                    </label>
+                <div class="ascii-output">
 
-                    <div>
-
-                        <input
-                            type="radio"
-                            id="standard"
-                            name="banner"
-                            value="standard"
-                            checked
-                        >
-
-                        <label for="standard">
-                            Standard
-                        </label>
-
-                    </div>
-
-                    <div>
-
-                        <input
-                            type="radio"
-                            id="shadow"
-                            name="banner"
-                            value="shadow"
-                        >
-
-                        <label for="shadow">
-                            Shadow
-                        </label>
-
-                    </div>
-
-                    <div>
-
-                        <input
-                            type="radio"
-                            id="thinkertoy"
-                            name="banner"
-                            value="thinkertoy"
-                        >
-
-                        <label for="thinkertoy">
-                            Thinkertoy
-                        </label>
-
-                    </div>
-
-                </div>
-
-                <div>
-
-                    <button type="submit">
-                        Generate ASCII Art
-                    </button>
-
-                </div>
-
-                <div>
-
-                    <p>{{ .Error }}</p>
+                    <pre>{{ .Result }}</pre>
 
                 </div>
 
             </form>
-
-        </section>
-
-        <section>
-
-            <h2>
-                Generated ASCII Art
-            </h2>
-
-            <div>
-
-                <pre>{{ .Result }}</pre>
-
-            </div>
 
         </section>
 
@@ -131,5 +135,9 @@
 
     </footer>
 
+</div>
+```
+
 </body>
+
 </html>
