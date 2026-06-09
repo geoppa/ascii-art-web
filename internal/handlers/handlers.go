@@ -16,14 +16,38 @@ type PageData struct {
 	Result string
 }
 
+type ErrorPageData struct {
+	Code    int
+	Message string
+}
+
 func renderHomePage(w http.ResponseWriter, data PageData) {
 	tmpl, err := template.ParseFiles("templates/index.html")
 	if err != nil {
-		http.Error(w, "Not Found", http.StatusNotFound)
+		renderErrorPage(w, http.StatusNotFound, "Page Not Found")
 		return
 	}
 
 	err = tmpl.Execute(w, data)
+	if err != nil {
+		renderErrorPage(w, http.StatusInternalServerError, "Internal Server Error")
+		return
+	}
+}
+
+func renderErrorPage(w http.ResponseWriter, statusCode int, message string) {
+	tmpl, err := template.ParseFiles("templates/error.html")
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(statusCode)
+
+	err = tmpl.Execute(w, ErrorPageData{
+		Code:    statusCode,
+		Message: message,
+	})
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
@@ -31,8 +55,22 @@ func renderHomePage(w http.ResponseWriter, data PageData) {
 }
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
+
+	if r.URL.Path != "/" {
+		renderErrorPage(
+			w,
+			http.StatusNotFound,
+			"Page Not Found",
+		)
+		return
+	}
+
 	if r.Method != http.MethodGet {
-		http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
+		renderErrorPage(
+			w,
+			http.StatusMethodNotAllowed,
+			"Method Not Allowed",
+		)
 		return
 	}
 
@@ -41,13 +79,13 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 
 func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
-		http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
+		renderErrorPage(w, http.StatusMethodNotAllowed, "Method Not Allowed")
 		return
 	}
 
 	err := r.ParseForm()
 	if err != nil {
-		http.Error(w, "Bad Request", http.StatusBadRequest)
+		renderErrorPage(w, http.StatusBadRequest, "Bad Request")
 		return
 	}
 
