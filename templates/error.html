@@ -1,36 +1,49 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Error</title>
 
-    <link rel="stylesheet" href="/static/style.css">
+<title>Error</title>
+
+<link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
+
+<link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
+
+<link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
+
+<link rel="icon" href="/static/favicon.ico">
+
+<link rel="manifest" href="/static/site.webmanifest">
+
+<link rel="stylesheet" href="/static/style.css">
+
 </head>
 
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <header class="hero">
-            <h1>ASCII Art Web</h1>
-        </header>
+    <header class="hero">
+        <h1>ASCII Art Web</h1>
+    </header>
 
-        <section class="card">
+    <section class="card">
 
-            <h2>{{ .Code }}</h2>
+        <h2>{{ .Code }}</h2>
 
-            <p>{{ .Message }}</p>
+        <p>{{ .Message }}</p>
 
-            <br>
+        <br>
 
-            <a href="/">
-                Return Home
-            </a>
+        <a href="/">
+            Return Home
+        </a>
 
-        </section>
+    </section>
 
-    </div>
+</div>
 
 </body>
 

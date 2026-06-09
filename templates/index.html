@@ -4,90 +4,97 @@
 
 <head>
     <meta charset="UTF-8">
+
     <title>ASCII Art Web</title>
 
-```
-<link rel="stylesheet" href="/static/style.css">
-```
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
 
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
+
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
+
+    <link rel="manifest" href="/static/site.webmanifest">
+
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 
 <body>
 
-```
-<div class="container">
+    <div class="container">
 
-    <header class="hero">
+        <header class="hero">
 
-        <h1>ASCII Art Web</h1>
+            <h1>ASCII Art Web</h1>
 
-        <p>
-            Convert your text into ASCII art using different banner styles.
-        </p>
+            <p>
+                Convert your text into ASCII art using different banner styles.
+            </p>
 
-    </header>
+        </header>
 
-    <main class="content-grid">
+        <main class="content-grid">
 
-        <section class="card controls-card">
+            <section class="card controls-card">
 
-            <form method="POST" action="/ascii-art">
+                <form method="POST" action="/ascii-art">
 
-                <label>
-                    Banner Style
-                </label>
-
-                <div>
-
-                    <input
-                        type="radio"
-                        id="standard"
-                        name="banner"
-                        value="standard"
-                        {{ if or (eq .Banner "") (eq .Banner "standard") }}checked{{ end }}
-                    >
-
-                    <label for="standard">
-                        Standard
+                    <label>
+                        Banner Style
                     </label>
 
-                </div>
+                    <div>
 
-                <div>
+                        <input
+                            type="radio"
+                            id="standard"
+                            name="banner"
+                            value="standard"
+                            {{ if or (eq .Banner "") (eq .Banner "standard") }}checked{{ end }}
+                        >
 
-                    <input
-                        type="radio"
-                        id="shadow"
-                        name="banner"
-                        value="shadow"
-                        {{ if eq .Banner "shadow" }}checked{{ end }}
-                    >
+                        <label for="standard">
+                            Standard
+                        </label>
 
-                    <label for="shadow">
-                        Shadow
-                    </label>
+                    </div>
 
-                </div>
+                    <div>
 
-                <div>
+                        <input
+                            type="radio"
+                            id="shadow"
+                            name="banner"
+                            value="shadow"
+                            {{ if eq .Banner "shadow" }}checked{{ end }}
+                        >
 
-                    <input
-                        type="radio"
-                        id="thinkertoy"
-                        name="banner"
-                        value="thinkertoy"
-                        {{ if eq .Banner "thinkertoy" }}checked{{ end }}
-                    >
+                        <label for="shadow">
+                            Shadow
+                        </label>
 
-                    <label for="thinkertoy">
-                        Thinkertoy
-                    </label>
+                    </div>
 
-                </div>
+                    <div>
 
-                <button class="generate-btn" type="submit">
-                    Generate ASCII Art
-                </button>
+                        <input
+                            type="radio"
+                            id="thinkertoy"
+                            name="banner"
+                            value="thinkertoy"
+                            {{ if eq .Banner "thinkertoy" }}checked{{ end }}
+                        >
+
+                        <label for="thinkertoy">
+                            Thinkertoy
+                        </label>
+
+                    </div>
+
+                    <button class="generate-btn" type="submit">
+                        Generate ASCII Art
+                    </button>
+
+                {{ if .Error }}
 
                 <div class="error-box">
 
@@ -95,50 +102,51 @@
 
                 </div>
 
-        </section>
+                {{ end }}
 
-        <section class="card workspace-card">
+            </section>
 
-                <div>
+            <section class="card workspace-card">
 
-                    <label for="text-input">
-                        Enter your text
-                    </label>
+                    <div>
 
-                    <textarea
-                        id="text-input"
-                        name="text"
-                        rows="6"
-                    >{{ .Text }}</textarea>
+                        <label for="text-input">
+                            Enter your text
+                        </label>
 
-                </div>
+                        <textarea
+                            id="text-input"
+                            name="text"
+                            rows="6"
+                        >{{ .Text }}</textarea>
 
-                <h2>
-                    Generated ASCII Art
-                </h2>
+                    </div>
 
-                <div class="ascii-output">
+                    <h2>
+                        Generated ASCII Art
+                    </h2>
 
-                    <pre>{{ .Result }}</pre>
+                    <div class="ascii-output">
 
-                </div>
+                        <pre>{{ .Result }}</pre>
 
-            </form>
+                    </div>
 
-        </section>
+                </form>
 
-    </main>
+            </section>
 
-    <footer>
+        </main>
 
-        <p>
-            Created by gpapadaki | elgeorgiou
-        </p>
+        <footer>
 
-    </footer>
+            <p>
+                Created by gpapadaki | elgeorgiou
+            </p>
 
-</div>
-```
+        </footer>
+
+    </div>
 
 </body>
 
