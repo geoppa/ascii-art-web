@@ -179,3 +179,79 @@ Current test coverage includes:
 This project is distributed under the MIT License.
 
 See the LICENSE file for more information.
+
+----------
+
+## Σημείωση για το Merge
+
+### Ολοκληρωμένα (elgeorgiou)
+
+#### internal/handlers
+
+* Homepage handler.
+* ASCII Art handler.
+* HTTP method validation.
+* Custom error page rendering.
+* 404 Not Found handling.
+* 405 Method Not Allowed handling.
+* Form processing and request flow.
+
+#### internal/validation
+
+* Text validation.
+* Banner validation.
+* Validation tests.
+
+#### templates
+
+* Homepage template.
+* Error page template.
+
+#### static
+
+* Application styling.
+
+#### Documentation
+
+* README.md
+* LICENSE
+* TASK.md
+* AUDIT.md
+
+#### Tests
+
+* internal/validation/validation_test.go
+* internal/banner/banner_test.go
+* internal/handlers/handlers_test.go
+
+---
+
+### Υπόλοιπο προς ολοκλήρωση
+
+#### internal/render
+
+* Verify rendering logic.
+* Verify generated output matches expected banner output.
+* Add/complete render tests.
+
+#### Integration
+
+* Verify complete flow after merge.
+* Verify banner loading and rendering together.
+* Verify all audit examples produce expected output.
+
+#### Final Checks
+
+* Run:
+
+```bash
+go test ./...
+```
+
+```bash
+go run ./cmd
+```
+
+* Complete final audit rehearsal.
+* Verify all HTTP status codes.
+* Verify all supported banners.
