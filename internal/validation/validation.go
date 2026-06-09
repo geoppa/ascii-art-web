@@ -1,14 +1,23 @@
 package validation
 
-func EmptyInput(text string) bool {
-	return text == ""
+import (
+	"errors"
+	"strings"
+)
+
+func ValidateText(text string) error {
+	if strings.TrimSpace(text) == "" {
+		return errors.New("Please enter text to generate ASCII art.")
+	}
+
+	return nil
 }
 
-func ValidBanner(name string) bool {
+func ValidateBanner(name string) error {
 	switch name {
 	case "standard", "shadow", "thinkertoy":
-		return true
+		return nil
 	default:
-		return false
+		return errors.New("Please select a valid banner style.")
 	}
 }
