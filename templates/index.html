@@ -44,7 +44,7 @@
                         id="standard"
                         name="banner"
                         value="standard"
-                        checked
+                        {{ if or (eq .Banner "") (eq .Banner "standard") }}checked{{ end }}
                     >
 
                     <label for="standard">
@@ -60,6 +60,7 @@
                         id="shadow"
                         name="banner"
                         value="shadow"
+                        {{ if eq .Banner "shadow" }}checked{{ end }}
                     >
 
                     <label for="shadow">
@@ -75,6 +76,7 @@
                         id="thinkertoy"
                         name="banner"
                         value="thinkertoy"
+                        {{ if eq .Banner "thinkertoy" }}checked{{ end }}
                     >
 
                     <label for="thinkertoy">
@@ -106,7 +108,7 @@
                     <textarea
                         id="text-input"
                         name="text"
-                        rows="8"
+                        rows="6"
                     >{{ .Text }}</textarea>
 
                 </div>
