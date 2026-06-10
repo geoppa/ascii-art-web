@@ -32,11 +32,19 @@
 
     <div class="hero-frame">
 
+        <span class="hero-mark">
+            ///
+        </span>
+
         <div class="hero-line"></div>
 
         <h1>ASCII Art Web</h1>
 
         <div class="hero-line"></div>
+
+        <span class="hero-mark">
+            ///
+        </span>
 
     </div>
 
@@ -50,16 +58,21 @@
 
             <section class="card controls-card">
 
-               <div class="panel-title banner-title">
+                <div class="panel-title banner-title">
 
-    <span>
-        Banner Style
-    </span>
+                    <span>
+                        Banner Style
+                    </span>
 
-    <div class="title-accent"></div>
+                    <div class="title-accent"></div>
 
-</div>
-                <div>
+                    <span class="cyber-mark">
+                        ///
+                    </span>
+
+                </div>
+
+                <div class="radio-row">
 
                     <input
                         type="radio"
@@ -75,7 +88,7 @@
 
                 </div>
 
-                <div>
+                <div class="radio-row">
 
                     <input
                         type="radio"
@@ -91,7 +104,7 @@
 
                 </div>
 
-                <div>
+                <div class="radio-row">
 
                     <input
                         type="radio"
@@ -107,9 +120,17 @@
 
                 </div>
 
-                <button class="generate-btn" type="submit">
-                    Generate ASCII Art
-                </button>
+               <button class="generate-btn" type="submit">
+
+    <span class="btn-icon">
+        ⚡
+    </span>
+
+    <span>
+        Generate ASCII Art
+    </span>
+
+</button>
 
                 {{ if .Error }}
 
@@ -127,15 +148,19 @@
 
                 <div>
 
-                   <div class="panel-title">
+                    <div class="panel-title">
 
-    <span>
-        Enter your text
-    </span>
+                        <span>
+                            Enter your text
+                        </span>
 
-    <div class="title-accent"></div>
+                        <div class="title-accent"></div>
 
-</div>
+                        <span class="cyber-mark">
+                            ///
+                        </span>
+
+                    </div>
 
                     <textarea
                         id="text-input"
@@ -147,13 +172,17 @@
 
                 <div class="panel-title">
 
-    <span>
-        Generated ASCII Art
-    </span>
+                    <span>
+                        Generated ASCII Art
+                    </span>
 
-    <div class="title-accent"></div>
+                    <div class="title-accent"></div>
 
-</div>
+                    <span class="cyber-mark">
+                        ///
+                    </span>
+
+                </div>
 
                 <div class="ascii-output">
 
@@ -165,13 +194,21 @@
 
         </form>
 
-        <footer>
+        <footer class="footer-frame">
 
-            <p>
-                Created by gpapadaki | elgeorgiou
-            </p>
+    <span class="footer-icon">
+        🎮
+    </span>
 
-        </footer>
+    <p>
+        Created by gpapadaki | elgeorgiou
+    </p>
+
+    <span class="footer-icon">
+        ♥
+    </span>
+
+</footer>
 
     </div>
 
