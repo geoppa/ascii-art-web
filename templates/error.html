@@ -1,43 +1,86 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-
-<title>Error</title>
-
-<link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
-
-<link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
-
-<link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
-
-<link rel="icon" href="/static/favicon.ico">
-
-<link rel="manifest" href="/static/site.webmanifest">
-
-<link rel="stylesheet" href="/static/style.css">
-
+    <title>Error {{ .Code }}</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
+    <link rel="icon" href="/static/favicon.ico">
+    <link rel="manifest" href="/static/site.webmanifest">
+    <link rel="stylesheet" href="/static/style.css">
+    
+    <!-- Targeted styling overrides to keep the error screen tight and cohesive -->
+    <style>
+        .error-wrapper {
+            max-width: 500px;
+            margin: 40px auto;
+        }
+        .error-card {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .error-card h2 {
+            font-size: 5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #ef4444, #f43f5e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+        }
+        .error-card p {
+            font-size: 1.2rem;
+            color: #67e8f9;
+            margin-bottom: 30px;
+        }
+        /* Transforms your plain link into a matching cyberpunk utility badge */
+        .return-btn {
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 12px 30px;
+            border: 2px solid rgba(255,255,255,.15);
+            background: linear-gradient(90deg, #8b5cf6, #22d3ee);
+            transition: all .25s ease;
+            cursor: pointer;
+            
+            /* Reuses your exact polygon visual layout style wrapper */
+            clip-path: polygon(
+                12px 0,
+                calc(100% - 12px) 0,
+                100% 12px,
+                100% calc(100% - 12px),
+                calc(100% - 12px) 100%,
+                12px 100%,
+                0 calc(100% - 12px),
+                0 12px
+            );
+        }
+        .return-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.6);
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="container">
+<div class="container error-wrapper">
 
     <header class="hero">
         <h1>ASCII Art Web</h1>
     </header>
 
-    <section class="card">
+    <!-- Added custom classes to map your specific background styles cleanly -->
+    <section class="card error-card">
 
         <h2>{{ .Code }}</h2>
 
         <p>{{ .Message }}</p>
 
-        <br>
-
-        <a href="/">
+        <a href="/" class="return-btn">
             Return Home
         </a>
 
@@ -46,5 +89,4 @@
 </div>
 
 </body>
-
 </html>

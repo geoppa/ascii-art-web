@@ -42,24 +42,17 @@ body {
 
 .hero {
   position: relative;
-
   text-align: center;
-
   margin-bottom: 20px;
-
   padding: 20px 30px;
-
   background:
     linear-gradient(
       180deg,
       rgba(10,15,35,.95),
       rgba(5,8,22,.95)
     );
-
   border: 2px solid rgba(139,92,246,.4);
-
- border-radius: 22px;
-
+  border-radius: 22px;
   box-shadow:
     0 0 20px rgba(217,70,239,.25),
     0 0 40px rgba(34,211,238,.15);
@@ -67,15 +60,10 @@ body {
 
 .hero-mark {
   color: #d946ef;
-
   font-size: 3rem;
-
   font-weight: 900;
-
   line-height: 1;
-
   letter-spacing: 1px;
-
   text-shadow:
     0 0 8px #d946ef,
     0 0 15px #d946ef,
@@ -84,41 +72,30 @@ body {
 
 .hero::before {
   content: "";
-
   position: absolute;
-
   top: 15px;
   left: 15px;
-
   width: 80px;
   height: 80px;
-
   border-top: 2px solid #d946ef;
   border-left: 2px solid #d946ef;
 }
 
 .hero::after {
   content: "";
-
   position: absolute;
-
   right: 15px;
   bottom: 15px;
-
   width: 80px;
   height: 80px;
-
   border-right: 2px solid #22d3ee;
   border-bottom: 2px solid #22d3ee;
 }
 
 .hero h1 {
   font-family: "Rye", serif;
-
   font-size: 4.5rem;
-
   letter-spacing: 4px;
-
   background:
     linear-gradient(
       90deg,
@@ -126,11 +103,8 @@ body {
       #c084fc,
       #22d3ee
     );
-
   -webkit-background-clip: text;
-
   -webkit-text-fill-color: transparent;
-
   text-shadow:
   0 0 10px rgba(217,70,239,.8),
   0 0 20px rgba(217,70,239,.6),
@@ -142,7 +116,6 @@ body {
   font-family: "Caveat", cursive;
   font-size: 1.6rem;
   color: #67e8f9;
-
   text-shadow:
     0 0 8px rgba(103, 232, 249, 0.3);
 }
@@ -160,33 +133,25 @@ body {
 
 .card {
   position: relative;
-
   background:
     linear-gradient(
       180deg,
       rgba(10,15,35,.95),
       rgba(5,8,22,.95)
     );
-
   border: 2px solid rgba(139,92,246,.45);
-
   padding: 25px;
-
- border-radius: 18px;
-
+  border-radius: 18px;
   box-shadow:
     0 0 12px rgba(217,70,239,.25),
     0 0 25px rgba(34,211,238,.15),
     inset 0 0 15px rgba(255,255,255,.02);
-
   overflow: hidden;
 }
 
 .controls-card {
   position: sticky;
-
   top: 20px;
-
   min-height: 400px;
 }
 
@@ -224,7 +189,7 @@ body {
 }
 
 .controls-card div label {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: white;
 }
 
@@ -233,31 +198,29 @@ body {
 }
 
 input[type="radio"] {
-  width: 18px;
-  height: 18px;
+  width: 22px;  /* Increased from 18px */
+  height: 22px; /* Increased from 18px */
   accent-color: #8b5cf6;
+  vertical-align: middle;
+  margin-right: 8px; /* Adds a clean gap between the circle and the text */
+  cursor: pointer;
 }
 
 textarea {
   width: 100%;
   min-height: 220px;
   resize: vertical;
-
   background:
   linear-gradient(
     180deg,
     rgba(2,6,23,.98),
     rgba(5,10,35,.95)
   );
-
   color: white;
-
   border: 2px solid #22d3ee;
   border-radius: 14px;
-
   padding: 18px;
   font-size: 18px;
-
   box-shadow:
     0 0 12px rgba(34, 211, 238, 0.25);
 }
@@ -265,43 +228,40 @@ textarea {
 textarea:focus {
   outline: none;
   border-color: #8b5cf6;
-
   box-shadow:
     0 0 10px rgba(139, 92, 246, 0.5),
     0 0 25px rgba(139, 92, 246, 0.25);
 }
 
+/* 👥 RESTORED: Horizontal row configuration for side-by-side button structure */
+.button-row {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.button-row .generate-btn {
+  margin-top: 0;
+  flex: 1;
+}
+
 .generate-btn {
   display: flex;
-
   align-items: center;
-
   align-self: center; 
-
   justify-content: center;
-
   gap: 14px;
-
   width: 100%;
-
-  margin-top: 15px;
-
   padding: 15px 20px;
-
   cursor: pointer;
-
   border: 2px solid rgba(255,255,255,.15);
-
   color: white;
-
   font-size: 1rem;
-
   font-weight: bold;
-
   text-transform: uppercase;
-
   letter-spacing: 1px;
-
   background:
     linear-gradient(
       90deg,
@@ -309,7 +269,6 @@ textarea:focus {
       #8b5cf6,
       #22d3ee
     );
-
   clip-path: polygon(
     18px 0,
     calc(100% - 18px) 0,
@@ -320,43 +279,30 @@ textarea:focus {
     0 calc(100% - 18px),
     0 18px
   );
-
   box-shadow:
     0 0 20px rgba(217,70,239,.45),
     0 0 35px rgba(34,211,238,.25);
-
   transition: all .25s ease;
-
   position: relative;
-
   overflow: hidden;
 }
 
 .generate-btn::before {
   content: "";
-
   position: absolute;
-
   inset: 3px;
-
   border: 1px solid rgba(255,255,255,.25);
-
   clip-path: inherit;
-
   pointer-events: none;
 }
 
 .generate-btn::after {
     content: "";
-
     position: absolute;
-
     top: 0;
     left: -100%;
-
     width: 100%;
     height: 100%;
-
     background:
         linear-gradient(
             90deg,
@@ -364,7 +310,6 @@ textarea:focus {
             rgba(255,255,255,.15),
             transparent
         );
-
     transition: .6s;
 }
 
@@ -378,30 +323,78 @@ textarea:focus {
 
 .btn-icon {
   font-size: 1.5rem;
-
   color: #ffd166;
-
   text-shadow:
     0 0 1px rgba(255,209,102,.9),
     0 0 6px rgba(255,209,102,.5);
 }
 
+/* 🟥 RESTORED: Massive geometric reset button with crimson neon theme */
+.reset-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex: 1;
+  padding: 15px 20px;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 2px solid rgba(255,255,255,.15);
+  background: linear-gradient(90deg, #ef4444, #db2777);
+  clip-path: polygon(
+    18px 0,
+    calc(100% - 18px) 0,
+    100% 18px,
+    100% calc(100% - 18px),
+    calc(100% - 18px) 100%,
+    18px 100%,
+    0 calc(100% - 18px),
+    0 18px
+  );
+  box-shadow:
+    0 0 20px rgba(239, 68, 68, 0.45),
+    0 0 35px rgba(219, 39, 119, 0.25);
+  transition: all .25s ease;
+  position: relative;
+}
+
+.reset-btn::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px solid rgba(255,255,255,.25);
+  clip-path: inherit;
+  pointer-events: none;
+}
+
+.reset-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    0 0 25px rgba(239, 68, 68, 0.8),
+    0 0 40px rgba(219, 39, 119, 0.5);
+}
+
+.reset-btn:active {
+  transform: scale(0.98);
+}
+
 .ascii-output {
   min-height: 260px;
-
- background:
+  background:
   linear-gradient(
     180deg,
     rgba(2,6,23,.98),
     rgba(5,10,35,.95)
   );
-
   border: 2px solid #22d3ee;
   border-radius: 14px;
-
   padding: 20px;
   overflow-x: auto;
-
   box-shadow:
     0 0 12px rgba(34, 211, 238, 0.35),
     0 0 25px rgba(34, 211, 238, 0.15);
@@ -409,28 +402,21 @@ textarea:focus {
 
 .ascii-output pre {
   margin: 0;
-
   color: #d8faff;
-
   white-space: pre;
-
   font-size: 0.95rem;
-
+  font-family: "Courier New", Courier, monospace; 
   text-shadow:
     0 0 4px rgba(34,211,238,.2);
 }
 
 .error-box {
-   margin-top: 25px;
-  
+  margin-top: 25px;
   background: rgba(60, 0, 0, 0.35);
-
   border: 1px solid #ef4444;
   border-radius: 14px;
-
   padding: 14px;
   color: #ff6b6b;
-
   box-shadow:
     0 0 10px rgba(239, 68, 68, 0.25);
 }
@@ -449,11 +435,8 @@ footer {
 
 body::before {
     content: "";
-
     position: fixed;
-
     inset: 0;
-
     background-image:
       linear-gradient(
         rgba(34,211,238,.03) 1px,
@@ -464,9 +447,7 @@ body::before {
         rgba(34,211,238,.03) 1px,
         transparent 1px
       );
-
     background-size: 50px 50px;
-
     pointer-events: none;
 }
 
@@ -481,7 +462,6 @@ body::before {
 .hero-line {
   width: 180px;
   height: 2px;
-
   background:
     linear-gradient(
       90deg,
@@ -489,7 +469,6 @@ body::before {
       #22d3ee,
       transparent
     );
-
   box-shadow:
     0 0 6px #22d3ee,
     0 0 12px #22d3ee;
@@ -518,16 +497,13 @@ body::before {
 
 .title-accent {
   width: 240px;
-
   height: 5px;
-
   background:
     linear-gradient(
       90deg,
       #22d3ee,
       transparent
     );
-
   box-shadow:
     0 0 4px #22d3ee,
     0 0 10px #22d3ee;
@@ -535,7 +511,6 @@ body::before {
 
 .card:hover {
   transform: translateY(-3px);
-
   box-shadow:
     0 0 25px rgba(139, 92, 246, 0.25),
     0 0 50px rgba(6, 182, 212, 0.15);
@@ -545,7 +520,6 @@ body::before {
   transform:
     translateY(-3px)
     scale(1.02);
-
   box-shadow:
     0 0 25px rgba(217,70,239,.8),
     0 0 40px rgba(34,211,238,.5);
@@ -553,299 +527,30 @@ body::before {
 
 input[type="radio"]:checked + label {
   color: #22d3ee;
-
   text-shadow:
     0 0 6px #22d3ee;
 }
 
 .card::before {
   content: "";
-
   position: absolute;
-
   top: 12px;
   left: 12px;
-
   width: 60px;
   height: 90px;
-
   border-top: 2px solid #d946ef;
   border-left: 2px solid #d946ef;
-
   opacity: .8;
 }
 
 .card::after {
   content: "";
-
   position: absolute;
-
   right: 12px;
   bottom: 12px;
-
   width: 60px;
   height: 90px;
-
-  border-right: 2px solid #22d3ee;
   border-bottom: 2px solid #22d3ee;
-
-  opacity: .8;
-}
-
-.card .inner-frame {
-  position: absolute;
-
-  top: 18px;
-  left: 18px;
-  right: 18px;
-  bottom: 18px;
-
-  border: 1px solid rgba(139,92,246,.2);
-
-  pointer-events: none;
-}
-
-.card-corner {
-  position: absolute;
-  bottom: 25px;
-  right: 25px;
-
-  width: 40px;
-  height: 2px;
-
-  background: #22d3ee;
-}
-
-.footer-frame {
-  margin-top: 40px;
-
-  display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-  gap: 40px;
-
-  padding: 12px 24px;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(10,15,35,.95),
-      rgba(5,8,22,.95)
-    );
-
-     border: 2px solid rgba(139,92,246,.35);
-
-     position: relative;
-
-    border: 2px solid rgba(139,92,246,.35);
-
-    border-radius: 8px;
-
-  box-shadow:
-    0 0 12px rgba(217,70,239,.2),
-    0 0 25px rgba(34,211,238,.1);
-}
-
-.footer-frame::before {
-  content: "";
-
-  position: absolute;
-
-  top: 13px;
-  left: 13px;
-
-  width: 40px;
-  height: 40px;
-
-  border-top: 2px solid #d946ef;
-  border-left: 2px solid #d946ef;
-
-  opacity: .8;
-}
-
-.footer-frame::after {
-  content: "";
-
-  position: absolute;
-
-  right: 13px;
-  bottom: 13px;
-
-  width: 40px;
-  height: 40px;
-
   border-right: 2px solid #22d3ee;
-  border-bottom: 2px solid #22d3ee;
-
   opacity: .8;
 }
-
-.footer-frame p {
-  margin: 0;
-
-  font-family: "Caveat", cursive;
-
-  font-size: 1.6rem;
-
-  color: #67e8f9;
-}
-
-.footer-icon {
-  font-size: 1.6rem;
-
-  color: #d946ef;
-
-  text-shadow:
-    0 0 10px rgba(217,70,239,.7);
-}
-
-.cyber-mark {
-  color: #d946ef;
-
-  font-size: 2rem;
-
-  font-weight: 900;
-
-  letter-spacing: 2px;
-
-  text-shadow:
-    0 0 8px #d946ef,
-    0 0 15px #d946ef;
-}
-
-.radio-row label:hover {
-    color: #67e8f9;
-
-    text-shadow:
-        0 0 8px #22d3ee;
-
-    cursor: pointer;
-}
-
-@media (max-width: 900px) {
-  .content-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 1200px) {
-
-  .hero h1 {
-    font-size: 3.8rem;
-  }
-
-  .hero-line {
-    width: 90px;
-  }
-
-  .title-accent {
-    width: 180px;
-  }
-}
-
-@media (max-width: 900px) {
-
-  .content-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .controls-card {
-    position: static;
-  }
-
-  .container {
-    padding: 15px;
-  }
-}
-
-@media (max-width: 768px) {
-
-  .hero h1 {
-    font-size: 3rem;
-  }
-
-  .hero-line {
-    width: 60px;
-  }
-
-  .hero-mark {
-    font-size: 2rem;
-  }
-
-  .panel-title span {
-    font-size: 1.4rem;
-  }
-
-  .title-accent {
-    width: 120px;
-  }
-}
-
-@media (max-width: 600px) {
-
-  .hero-frame {
-    gap: 10px;
-  }
-
-  .hero-line {
-    width: 40px;
-  }
-
-  .hero h1 {
-    font-size: 2.2rem;
-    letter-spacing: 2px;
-  }
-
-  .hero p {
-    font-size: 1.2rem;
-  }
-
-  .generate-btn {
-    font-size: .9rem;
-  }
-}
-
-@media (max-width: 480px) {
-
-  .hero h1 {
-    font-size: 1.8rem;
-  }
-
-  .hero-line {
-    display: none;
-  }
-
-  .hero-mark {
-    font-size: 1.8rem;
-  }
-
-  .panel-title {
-    flex-wrap: wrap;
-  }
-
-  .title-accent {
-    width: 80px;
-  }
-
-  textarea {
-    min-height: 180px;
-    font-size: 16px;
-  }
-
-  .ascii-output pre {
-    font-size: 0.7rem;
-  }
-
-  .footer-frame {
-    gap: 15px;
-    padding: 10px;
-  }
-
-  .footer-frame p {
-    font-size: 1.2rem;
-  }
-}
-
