@@ -25,7 +25,7 @@ ascii-art-web/
 │   └── validation/        # Payload structural health constraints
 ├── static/                # Public assets, browser styles (CSS), & favicons
 ├── templates/             # Front-end layout configurations (HTML templates)
-├── cmd/main.go                # Central operational system startup entry point
+├── cmd/main.go            # Central operational system startup entry point
 └── go.mod                 # Go operational workspace manifest dependency configuration
 ```
 
