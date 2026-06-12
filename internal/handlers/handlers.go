@@ -27,7 +27,7 @@ type ErrorPageData struct {
 func renderHomePage(w http.ResponseWriter, data PageData) {
 	tmpl, err := template.ParseFiles("templates/index.html")
 	if err != nil {
-		// FIXED: If the main template is missing, it is a server error (500), not a 404
+		// If the main template is missing, it is a server error (500), not a 404
 		renderErrorPage(w, http.StatusInternalServerError, "Internal Server Error")
 		return
 	}
@@ -129,9 +129,9 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 			w,
 			http.StatusInternalServerError,
 			"Internal Server Error",
-	)
-	return
-}
+		)
+		return
+	}
 
 	// Generate standard visual ASCII character block map
 	result := render.Generate(text, bannerData)

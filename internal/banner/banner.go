@@ -25,7 +25,7 @@ func Load(name string) ([]string, error) {
 		lines = append(lines, line)
 	}
 
-	// Dduble check for any structural scanner reading errors
+	// duble check for any structural scanner reading errors
 	if err := scanner.Err(); err != nil {
 		return nil, err
 	}

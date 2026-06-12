@@ -5,14 +5,12 @@ import (
 
 	"ascii-art-web/internal/handlers"
 )
-//δημιουργήσουμε μία νέα συνάρτηση 
-//η οποία θα φτιάχνει έναν δικό της router.
+
+// function tha creates a router
 func NewRouter() *http.ServeMux {
 	mux := http.NewServeMux()
-
 	mux.HandleFunc("/", handlers.HomeHandler)
 	mux.HandleFunc("/ascii-art", handlers.AsciiArtHandler)
-
 	mux.Handle(
 		"/static/",
 		http.StripPrefix(
@@ -20,7 +18,6 @@ func NewRouter() *http.ServeMux {
 			http.FileServer(http.Dir("static")),
 		),
 	)
-
 	return mux
 }
 

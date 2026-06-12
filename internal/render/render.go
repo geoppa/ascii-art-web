@@ -8,7 +8,7 @@ import (
 func Generate(text string, banner []string) string {
 	var output strings.Builder
 
-	// FIX: Turn literal written "\n" text strings into real newline bytes
+	// Turn literal written "\n" text strings into real newline bytes
 	text = strings.ReplaceAll(text, "\\n", "\n")
 
 	// Standardize browser carriage returns (\r\n) down to clean standard newlines (\n)
