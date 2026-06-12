@@ -5,19 +5,25 @@ import (
 
 	"ascii-art-web/internal/handlers"
 )
+//δημιουργήσουμε μία νέα συνάρτηση 
+//η οποία θα φτιάχνει έναν δικό της router.
+func NewRouter() http.Handler {
+	mux := http.NewServeMux()
 
-func Start() error {
-	// map the website routes to their specific handler functions
-	http.HandleFunc("/", handlers.HomeHandler)
-	http.HandleFunc("/ascii-art", handlers.AsciiArtHandler)
-	// serve CSS and static assets from the "static" folder
-	http.Handle(
+	mux.HandleFunc("/", handlers.HomeHandler)
+	mux.HandleFunc("/ascii-art", handlers.AsciiArtHandler)
+
+	mux.Handle(
 		"/static/",
 		http.StripPrefix(
 			"/static/",
 			http.FileServer(http.Dir("static")),
 		),
 	)
-	// keep the server running and listen on port 8080
-	return http.ListenAndServe(":8080", nil)
+
+	return mux
+}
+
+func Start() error {
+	return http.ListenAndServe(":8080", NewRouter())
 }

@@ -6,10 +6,10 @@ import (
 	"os"
 	"strings"
 	"testing"
-	"time"
 )
 
-// TestStart_RoutesRegistration ελέγχει αν όλα τα routes καταχωρούνται σωστά στο σύστημα
+// TestStart_RoutesRegistration ελέγχει ότι ο router της εφαρμογής
+// περιέχει όλα τα routes που πρέπει να είναι διαθέσιμα.
 func TestStart_RoutesRegistration(t *testing.T) {
 	// Αλλάζουμε το working directory στο root για να μην αποτύχει το FileServer setup
 	oldWd, _ := os.Getwd()
@@ -19,16 +19,10 @@ func TestStart_RoutesRegistration(t *testing.T) {
 	}
 	defer os.Chdir(oldWd)
 
-	// Καλούμε τη Start() σε ένα Goroutine επειδή η http.ListenAndServe μπλοκάρει.
-	go func() {
-		_ = Start()
-	}()
+	// Δημιουργούμε τον router της εφαρμογής χωρίς να ξεκινήσουμε
+	// πραγματικό HTTP server.
+	router := NewRouter()
 
-	// Χρησιμοποιούμε πραγματικό χρόνο αναμονής (100 milliseconds)
-	// για να βεβαιωθούμε ότι η Go πρόλαβε να καταχωρήσει όλα τα routes
-	time.Sleep(100 * time.Millisecond)
-
-	// Ελέγχουμε αν το DefaultServeMux της Go αναγνωρίζει σωστά τα routes που ορίσαμε
 	tests := []struct {
 		name string
 		path string
@@ -40,19 +34,21 @@ func TestStart_RoutesRegistration(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			// Η http.DefaultServeMux.Handler ελέγχει ποιος handler αντιστοιχεί σε κάθε URL
+			// Δημιουργούμε ένα δοκιμαστικό request και ζητάμε από τον router
+			// να μας επιστρέψει το route pattern που αντιστοιχεί στο URL.
 			req := httptest.NewRequest(http.MethodGet, tt.path, nil)
-			_, pattern := http.DefaultServeMux.Handler(req)
+			_, pattern := router.(*http.ServeMux).Handler(req)
 
 			// Αν το pattern είναι κενό, σημαίνει ότι το route δεν καταχωρήθηκε
 			if pattern == "" {
-				t.Errorf("Route pattern %s was not properly registered in DefaultServeMux", tt.path)
+				t.Errorf("Route pattern %s was not properly registered in router", tt.path)
 			}
 		})
 	}
 }
 
-// TestStart_StaticCSS ελέγχει αν το αρχείο style.css σερβίρεται σωστά και με το κατάλληλο Content-Type header
+// TestStart_StaticCSS ελέγχει αν το αρχείο style.css σερβίρεται σωστά
+// και με το κατάλληλο Content-Type header.
 func TestStart_StaticCSS(t *testing.T) {
 	// Αλλάζουμε το working directory στο root για να βρει τον φάκελο static/
 	oldWd, _ := os.Getwd()
@@ -66,8 +62,13 @@ func TestStart_StaticCSS(t *testing.T) {
 	req := httptest.NewRequest(http.MethodGet, "/static/style.css", nil)
 	rr := httptest.NewRecorder()
 
-	// Χρησιμοποιούμε το DefaultServeMux για να δούμε αν το router απαντάει στο static path
-	http.DefaultServeMux.ServeHTTP(rr, req)
+	// Δημιουργούμε τον router και προσομοιώνουμε ένα request
+	// προς το static αρχείο CSS χωρίς να ανοίξουμε πραγματικό port.
+	router := NewRouter()
+
+	// Στέλνουμε το request στον router και καταγράφουμε την απάντηση
+	// μέσα στον ResponseRecorder.
+	router.ServeHTTP(rr, req)
 
 	// 1. Ελέγχουμε αν το αρχείο σερβίρεται επιτυχώς (200 OK)
 	if rr.Code != http.StatusOK {
