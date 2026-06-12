@@ -69,7 +69,37 @@ func TestAsciiArtHandler(t *testing.T) {
 		}
 	})
 
-	// Case 4: Ένα GET request στο "/ascii-art" πρέπει να αποκλειστεί με 405 Method Not Allowed
+// Case 4: Κενό κείμενο πρέπει να επιστρέψει 400 Bad Request
+t.Run("Empty Text 400", func(t *testing.T) {
+	form := url.Values{}
+	form.Add("text", "")
+	form.Add("banner", "standard")
+
+	req := httptest.NewRequest(
+		http.MethodPost,
+		"/ascii-art",
+		strings.NewReader(form.Encode()),
+	)
+
+	req.Header.Add(
+		"Content-Type",
+		"application/x-www-form-urlencoded",
+	)
+
+	rr := httptest.NewRecorder()
+
+	AsciiArtHandler(rr, req)
+
+	if rr.Code != http.StatusBadRequest {
+		t.Errorf(
+			"AsciiArtHandler returned wrong status for empty text: got %d want %d",
+			rr.Code,
+			http.StatusBadRequest,
+		)
+	}
+})
+
+	// Case 5: Ένα GET request στο "/ascii-art" πρέπει να αποκλειστεί με 405 Method Not Allowed
 	t.Run("Invalid GET Method 405", func(t *testing.T) {
 		req := httptest.NewRequest(http.MethodGet, "/ascii-art", nil)
 		rr := httptest.NewRecorder()
