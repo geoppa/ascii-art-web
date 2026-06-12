@@ -11,13 +11,6 @@ import (
 // TestStart_RoutesRegistration ελέγχει ότι ο router της εφαρμογής
 // περιέχει όλα τα routes που πρέπει να είναι διαθέσιμα.
 func TestStart_RoutesRegistration(t *testing.T) {
-	// Αλλάζουμε το working directory στο root για να μην αποτύχει το FileServer setup
-	oldWd, _ := os.Getwd()
-	err := os.Chdir("../..")
-	if err != nil {
-		t.Fatalf("Failed to change working directory to root: %v", err)
-	}
-	defer os.Chdir(oldWd)
 
 	// Δημιουργούμε τον router της εφαρμογής χωρίς να ξεκινήσουμε
 	// πραγματικό HTTP server.
