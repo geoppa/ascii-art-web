@@ -2,42 +2,41 @@ package main
 
 import (
 	"net/http"
+	"net/http/httptest"
 	"os"
 	"testing"
-	"time"
+
+	"ascii-art-web/internal/server"
 )
 
 func TestMainIntegration(t *testing.T) {
-	// ΔΙΟΡΘΩΣΗ: Αναγκάζουμε το test να αλλάξει το working directory στο root
-	// ώστε η template.ParseFiles() και η os.Open() να βρίσκουν τους φακέλους templates/ και banners/
+	// Αλλάζουμε προσωρινά το working directory στο root του project
+	// ώστε τα templates και τα banner files να εντοπίζονται σωστά.
 	err := os.Chdir("..")
 	if err != nil {
 		t.Fatalf("Failed to change working directory: %v", err)
 	}
 
-	// Αν το test αρχείο σου βρίσκεται μέσα σε υποφάκελο (π.χ. cmd/),
-	// άλλαξε το παραπάνω σε os.Chdir("../") για να πάει ένα επίπεδο πίσω.
+	// Δημιουργούμε έναν προσωρινό HTTP server για το test
+	// χωρίς να ανοίξουμε πραγματικό port στο σύστημα.
+	testServer := httptest.NewServer(server.NewRouter())
+	defer testServer.Close()
 
-	// 1. Ξεκινάμε τη main() σε ένα ξεχωριστό Goroutine
-	go main()
-
-	// 2. Δίνουμε χρόνο στον server να σηκωθεί
-	time.Sleep(200 * time.Millisecond)
-
-	// 3. Στέλνουμε GET request στην αρχική σελίδα
-	resp, err := http.Get("http://localhost:8080/")
+	// Στέλνουμε GET request στην αρχική σελίδα.
+	resp, err := http.Get(testServer.URL + "/")
 	if err != nil {
 		t.Fatalf("Αποτυχία σύνδεσης με τον server: %v", err)
 	}
 	defer resp.Body.Close()
 
-	// Επιβεβαιώνουμε το 200 OK
+	// Επιβεβαιώνουμε ότι η αρχική σελίδα επιστρέφει 200 OK.
 	if resp.StatusCode != http.StatusOK {
 		t.Errorf("Αναμενόμενο Status 200 OK, αλλά πήραμε: %d", resp.StatusCode)
 	}
 
-	// 4. Test request για το 404 Not Found
-	resp404, err := http.Get("http://localhost:8080/non-existent-page-xyz")
+	// Στέλνουμε request σε route που δεν υπάρχει
+	// και επιβεβαιώνουμε ότι επιστρέφεται 404 Not Found.
+	resp404, err := http.Get(testServer.URL + "/non-existent-page-xyz")
 	if err != nil {
 		t.Fatalf("Αποτυχία σύνδεσης με τον server στο test 404: %v", err)
 	}
