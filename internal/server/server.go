@@ -7,7 +7,7 @@ import (
 )
 //δημιουργήσουμε μία νέα συνάρτηση 
 //η οποία θα φτιάχνει έναν δικό της router.
-func NewRouter() http.Handler {
+func NewRouter() *http.ServeMux {
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("/", handlers.HomeHandler)

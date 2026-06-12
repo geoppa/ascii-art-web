@@ -30,7 +30,7 @@ func TestStart_RoutesRegistration(t *testing.T) {
 			// Δημιουργούμε ένα δοκιμαστικό request και ζητάμε από τον router
 			// να μας επιστρέψει το route pattern που αντιστοιχεί στο URL.
 			req := httptest.NewRequest(http.MethodGet, tt.path, nil)
-			_, pattern := router.(*http.ServeMux).Handler(req)
+			_, pattern := router.Handler(req)
 
 			// Αν το pattern είναι κενό, σημαίνει ότι το route δεν καταχωρήθηκε
 			if pattern == "" {
