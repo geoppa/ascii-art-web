@@ -13,6 +13,7 @@ func TestValidateText(t *testing.T) {
 		{"Valid with Newlines", "Hello\nWorld", false},
 		{"Invalid Greek Characters", "Καλημέρα", true},
 		{"Invalid Emoji", "Hello 👋", true},
+		{"Invalid Only Newlines", "\n\n", true},
 		{"Invalid Empty Text", "", true},
 		{"Invalid Only Spaces", "   ", true},
 	}
