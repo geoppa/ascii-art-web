@@ -125,14 +125,13 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 	// Read text representation matrix out of storage
 	bannerData, err := banner.Load(bannerFile)
 	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError) // tells the browser this is a 500 error
-		renderHomePage(w, PageData{
-			Text:   text,
-			Banner: bannerName,
-			Error:  "500 Internal Server Error: Could not load banner files.",
-		})
-		return
-	}
+		renderErrorPage(
+			w,
+			http.StatusInternalServerError,
+			"Internal Server Error",
+	)
+	return
+}
 
 	// Generate standard visual ASCII character block map
 	result := render.Generate(text, bannerData)
